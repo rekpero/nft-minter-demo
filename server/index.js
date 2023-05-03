@@ -8,17 +8,18 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8111;
 const SPHERON_TOKEN = process.env.SPHERON_TOKEN;
+const CORS_ORIGIN = process.env.CORS_ORIGIN;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: CORS_ORIGIN,
+  })
+);
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
-
-app.get("/initiate-upload", async (req, res, next) => {
+app.get("/initiate-upload/:bucketName", async (req, res, next) => {
   try {
-    const bucketName = req.query.bucketName;
+    console.log(req.params);
+    const bucketName = req.params.bucketName;
     const protocol = ProtocolEnum.IPFS;
 
     const client = new SpheronClient({

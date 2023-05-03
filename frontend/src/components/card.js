@@ -59,7 +59,7 @@ const NFTCard = (props) => {
 
     try {
       setIsFullLoading(true);
-      const responseAsset = await fetch(`${SE_URL}?bucketName=${name}-asset`);
+      const responseAsset = await fetch(`${SE_URL}/${name}-asset`);
       const responseAssetJson = await responseAsset.json();
       const uploadAssetResult = await upload([files], {
         token: responseAssetJson.uploadToken,
@@ -73,7 +73,7 @@ const NFTCard = (props) => {
         image: uploadAssetResult.dynamicLinks[0],
       };
 
-      const responseMeta = await fetch(`${SE_URL}?bucketName=${name}-meta`);
+      const responseMeta = await fetch(`${SE_URL}/${name}-meta`);
       const responseMetaJson = await responseMeta.json();
       const uploadMetaResult = await upload([createFile(metadata)], {
         token: responseMetaJson.uploadToken,
