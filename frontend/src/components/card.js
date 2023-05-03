@@ -11,7 +11,7 @@ import { upload } from "@spheron/browser-upload";
 import { abi, contract } from "./utils";
 import { ethers } from "ethers";
 
-const SE_URL = "http://localhost:8111/initiate-upload";
+const SE_URL = `${process.env.REACT_APP_API_URL}/initiate-upload`;
 export const DefaultGasLimit = 500000000;
 
 const NFTCard = (props) => {
