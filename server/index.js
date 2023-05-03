@@ -12,7 +12,7 @@ const CORS_ORIGIN = process.env.CORS_ORIGIN;
 
 app.use(
   cors({
-    origin: CORS_ORIGIN,
+    origin: "*",
   })
 );
 
