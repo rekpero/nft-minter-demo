@@ -35,7 +35,7 @@ jobs:
           context: .
           file: ./server/Dockerfile
           push: true
-          tags: rekpero/nft-minter-server:${{ steps.extract-version.outputs.version }}
+          tags: nft-minter-server:${{ steps.extract-version.outputs.version }}
 
       - name: Update Spheron Instance
         id: updating-instance
