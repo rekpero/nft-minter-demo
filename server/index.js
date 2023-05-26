@@ -20,7 +20,7 @@ app.get("/initiate-upload/:bucketName", async (req, res, next) => {
   try {
     console.log(req.params);
     const bucketName = req.params.bucketName;
-    const protocol = ProtocolEnum.IPFS;
+    const protocol = ProtocolEnum.FILECOIN;
 
     const client = new SpheronClient({
       token: SPHERON_TOKEN,
