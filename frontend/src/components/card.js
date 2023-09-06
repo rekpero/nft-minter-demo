@@ -9,7 +9,6 @@ import {
 } from "wagmi";
 import { upload } from "@spheron/browser-upload";
 import { abi, contract } from "./utils";
-import { ethers } from "ethers";
 
 const SE_URL = `${process.env.REACT_APP_API_URL}/initiate-upload`;
 export const DefaultGasLimit = 500000000;
@@ -28,15 +27,8 @@ const NFTCard = (props) => {
   } = usePrepareContractWrite({
     address: contract,
     abi,
-    functionName: "mintNFT",
-    args: [
-      address,
-      tokenURI,
-      {
-        gasLimit: DefaultGasLimit,
-        maxPriorityFeePerGas: ethers.utils.parseUnits("0.05", "gwei"),
-      },
-    ],
+    functionName: "safeMint",
+    args: [address, tokenURI],
   });
   const { data, error, isError, write } = useContractWrite(config);
 
@@ -80,6 +72,7 @@ const NFTCard = (props) => {
       });
       console.log(uploadMetaResult);
       setTokenURI(`https://${uploadMetaResult.dynamicLinks[0]}/metadata.json`);
+      setTimeout(() => {}, 2000);
       write();
     } catch (err) {
       console.log(err);
@@ -165,10 +158,8 @@ const NFTCard = (props) => {
         <div>
           Successfully minted your NFT!
           <div>
-            <a
-              href={`https://calibration.filfox.info/en/message/${data?.hash}`}
-            >
-              Filfox: {data?.hash}
+            <a href={`https://mumbai.polygonscan.com/tx/${data?.hash}`}>
+              Polygonscan: {data?.hash}
             </a>
           </div>
         </div>

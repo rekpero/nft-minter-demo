@@ -8,7 +8,6 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8111;
 const SPHERON_TOKEN = process.env.SPHERON_TOKEN;
-const CORS_ORIGIN = process.env.CORS_ORIGIN;
 
 app.use(
   cors({

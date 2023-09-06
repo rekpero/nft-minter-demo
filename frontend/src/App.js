@@ -2,15 +2,15 @@ import { WagmiConfig, createClient, configureChains } from "wagmi";
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
 import { Footer, Hero, Navbar } from "./components";
 
-import { filecoinCalibration } from "wagmi/chains";
+import { polygonMumbai } from "wagmi/chains";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
 const { chains } = configureChains(
-  [filecoinCalibration],
+  [polygonMumbai],
   [
     jsonRpcProvider({
       rpc: () => ({
-        http: "https://filecoin-calibration.chainup.net/rpc/v1",
+        http: "https://polygon-mumbai.g.alchemy.com/v2/i0JIYxK_EGtBX5aGG1apX4KuoH7j_7dq",
       }),
     }),
   ]
